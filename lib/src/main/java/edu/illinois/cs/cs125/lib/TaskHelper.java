@@ -13,6 +13,14 @@ import java.util.List;
 public class TaskHelper {
 
     /**
+     * A helper function to get all task.
+     * @return a list of all the task user created
+     */
+    public static List<Task> getAllTask() {
+        return TaskStorage.getStorage();
+    }
+
+    /**
      * A filter function to return a list of all the starred (favourite) task.
      * @return a list of all starred task
      */
@@ -31,7 +39,7 @@ public class TaskHelper {
      * @return a list of overdue task
      */
     public static List<Task> isOverdue() {
-        List<Task> toReturn = new ArrayList<Task>();
+        List<Task> toReturn = new ArrayList<>();
         for (Task task : TaskStorage.getStorage()) {
             if (task.getNotification().compareTo(new Date()) > 0) {
                 toReturn.add(task);
