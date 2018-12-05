@@ -21,20 +21,6 @@ public class TaskHelper {
     }
 
     /**
-     * A filter function to return a list of all the starred (favourite) task.
-     * @return a list of all starred task
-     */
-    public static List<Task> isStarred() {
-        List<Task> toReturn = new ArrayList<>();
-        for (Task task : TaskStorage.getStorage()) {
-            if (task.isStar()) {
-                toReturn.add(task);
-            }
-        }
-        return toReturn;
-    }
-
-    /**
      * A filter function to return a list of all the overdue task
      * @return a list of overdue task
      */

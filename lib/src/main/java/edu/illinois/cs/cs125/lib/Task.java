@@ -43,14 +43,14 @@ public class Task {
     }
 
     /**
-     * Whether or not the user marked a favourite sign on the Task
-     */
-    private boolean star;
-
-    /**
      * The unique id of each task
      */
     private int id;
+
+    /**
+     * The note of the task
+     */
+    private String note;
 
     /**
      * The total number of tasks created
@@ -127,15 +127,15 @@ public class Task {
         this.priority = priority;
     }
 
-    public boolean isStar() {
-        return star;
-    }
-
-    public void setStar(boolean star) {
-        this.star = star;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

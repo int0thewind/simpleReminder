@@ -38,7 +38,7 @@
                     android:id="@+id/et_task_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="title" />
+                    android:hint="New Task Title" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -51,30 +51,9 @@
                     android:id="@+id/et_task_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="description" />
+                    android:hint="Note" />
 
             </android.support.design.widget.TextInputLayout>
-
-            <Button
-                android:id="@+id/start_time"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
-                android:fadingEdge="horizontal|vertical"
-                android:text="CHANGE YOUR START TIME"
-                android:textColor="@color/colorText" />
-
-            <Button
-                android:id="@+id/end_time"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
-                android:text="CHANGE YOUR END TIME"
-                android:textColor="@color/colorText" />
 
             <Button
                 android:id="@+id/notation_time"
@@ -83,7 +62,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
                 android:background="@color/colorPrimary"
-                android:text="CHANGE YOUR NOTATION TIME"
+                android:text="CHANGE NOTIFICATION TIME"
                 android:textColor="@color/colorText" />
 
             <RadioGroup
@@ -139,13 +118,13 @@
                 android:layout_gravity="center_horizontal">
 
                 <Button
-                    android:id="@+id/edit"
+                    android:id="@+id/finish edit"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
                     android:background="@color/colorPrimary"
                     android:text="Finish Editing"
                     android:textColor="@color/colorText" />
@@ -155,11 +134,11 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="25dp"
-                    android:background="@color/colorPrimary"
-                    android:text="Remove From Your List"
+                    android:background="@color/colorFloatButton"
+                    android:text="Remove From List"
                     android:textColor="@color/colorText" />
             </LinearLayout>
 
