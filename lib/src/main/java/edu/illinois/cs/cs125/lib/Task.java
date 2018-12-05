@@ -8,25 +8,13 @@ import java.util.Date;
  * For
  */
 public class Task {
-    /**
-     * A static method to store all the task the user created
-     * The integer of the task linked is the unique id of the Task
-     */
-    private static ArrayList<Task> storage;
+
 
     /**
      * This String stores the name of the task.
      */
     private String taskName;
 
-    /**
-     * This is the start date of one Task
-     */
-    private Date startTime;
-    /**
-     * This is the end date of one Task
-     */
-    private Date endTime;
     /**
      * This is the notification time of one Task
      */
@@ -76,6 +64,25 @@ public class Task {
      */
     private static final String INVALID_INPUT = "\\ ";
 
+    /**
+     * The name of a new task by default;
+     */
+    private static final String DEFAULT_TASK_NAME = "New Task";
+
+    /**
+     * Initial constructor that has no String as reference
+     * Automatically name this task as New Task
+     */
+    public Task() {
+        try {
+            this.taskName = DEFAULT_TASK_NAME;
+            this.id = totalTask + 1;
+            totalTask++;
+            TaskStorage.getStorage().add(this);
+        } catch (Exception e) {
+            System.out.println("Invalid input, please input at least a character for a task");
+        }
+    }
 
     /**
      * Initial constructor that takes a String value as the name of the Task
@@ -83,23 +90,17 @@ public class Task {
      */
     public Task(String setTaskName) {
         if (setTaskName.equals("") || setTaskName.equals(INVALID_INPUT)) {
-            throw new IllegalArgumentException();
+            new Task();
+            return;
         }
         try {
             this.taskName = setTaskName;
             this.id = totalTask + 1;
             totalTask++;
-            storage.add(this);
+            TaskStorage.getStorage().add(this);
         } catch (Exception e) {
             System.out.println("Invalid input, please input at least a character for a task");
         }
-    }
-
-    //TODO Finish all the getter and setter
-
-
-    public static ArrayList<Task> getStorage() {
-        return storage;
     }
 
     public String getTaskName() {
@@ -108,22 +109,6 @@ public class Task {
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
     public Date getNotification() {
@@ -152,9 +137,5 @@ public class Task {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }

@@ -8,4 +8,12 @@ public final class TaskStorage {
      */
 
     private static ArrayList<Task> storage;
+
+    /**
+     * A setter to get a list of all the tasks created by the user
+     * @return the full list of all the tasks
+     */
+    public static ArrayList<Task> getStorage() {
+        return storage;
+    }
 }

@@ -13,26 +13,12 @@ import java.util.List;
 public class TaskHelper {
 
     /**
-     * A filter function to return a list of task that has its end date as today.
-     * @return a list of task that ends today
-     */
-    public List<Task> isToday() {
-        List<Task> toReturn = new ArrayList<Task>();
-        for (Task toCheck : Task.getStorage()) {
-            if (toCheck.getEndTime() == new Date()) {
-                toReturn.add(toCheck);
-            }
-        }
-        return toReturn;
-    }
-
-    /**
      * A filter function to return a list of all the starred (favourite) task.
      * @return a list of all starred task
      */
-    public List<Task> isStarred() {
-        List<Task> toReturn = new ArrayList<Task>();
-        for (Task task : Task.getStorage()) {
+    public static List<Task> isStarred() {
+        List<Task> toReturn = new ArrayList<>();
+        for (Task task : TaskStorage.getStorage()) {
             if (task.isStar()) {
                 toReturn.add(task);
             }
@@ -44,10 +30,10 @@ public class TaskHelper {
      * A filter function to return a list of all the overdue task
      * @return a list of overdue task
      */
-    public List<Task> isOverdue() {
+    public static List<Task> isOverdue() {
         List<Task> toReturn = new ArrayList<Task>();
-        for (Task task : Task.getStorage()) {
-            if (task.getEndTime().compareTo(new Date()) > 0) {
+        for (Task task : TaskStorage.getStorage()) {
+            if (task.getNotification().compareTo(new Date()) > 0) {
                 toReturn.add(task);
             }
         }
@@ -58,10 +44,10 @@ public class TaskHelper {
      * Remove a Task based on its ID.
      * @param id the ID to locate the task to remove
      */
-    public void removeTask(int id) {
-        for (Task toCheck : Task.getStorage()) {
+    public static void removeTask(int id) {
+        for (Task toCheck : TaskStorage.getStorage()) {
             if (toCheck.getId() == id) {
-                Task.getStorage().remove(toCheck);
+                TaskStorage.getStorage().remove(toCheck);
             }
         }
     }
@@ -70,7 +56,7 @@ public class TaskHelper {
      * Remove a Task by its own reference
      * @param task the task to remove
      */
-    public void removeTask(Task task) {
-        Task.getStorage().remove(task);
+    public static void removeTask(Task task) {
+        TaskStorage.getStorage().remove(task);
     }
 }
