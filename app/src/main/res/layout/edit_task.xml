@@ -29,31 +29,20 @@
                 android:textSize="30dp"
                 android:textStyle="normal|bold" />
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_task_title"
+
+            <EditText
+                android:id="@+id/et_task_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="New Task Title" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_task_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="New Task Title" />
 
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/til_task_description"
+            <EditText
+                android:id="@+id/et_task_description"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:hint="Note" />
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/et_task_description"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Note" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/notation_time"
@@ -118,7 +107,7 @@
                 android:layout_gravity="center_horizontal">
 
                 <Button
-                    android:id="@+id/finish edit"
+                    android:id="@+id/finish_edit"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
