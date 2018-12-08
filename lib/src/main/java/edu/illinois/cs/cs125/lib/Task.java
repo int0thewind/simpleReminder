@@ -2,6 +2,7 @@ package edu.illinois.cs.cs125.lib;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * The constructor for all the Task user created.
@@ -17,12 +18,13 @@ public class Task {
     /**
      * The status about whether a task is marked as finished by user or not.
      */
-    private boolean isFinish;
+    private boolean isFinish = false;
 
     /**
      * This is the notification time of one Task
      */
     private Date notification;
+
     /**
      * This defines the priority of this Task based on the enum Priority.
      */
@@ -103,15 +105,29 @@ public class Task {
         return id;
     }
 
-    public boolean isFinish() {
-        return isFinish;
+    public void isFinish() {
+        this.isFinish = true;
     }
 
     public void setFinish(boolean finish) {
         isFinish = finish;
     }
 
+    @Override
     public String toString() {
         return this.getTaskName() + "has notification on" +this.getNotification().toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

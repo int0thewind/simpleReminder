@@ -30,10 +30,10 @@
     <ListView
         android:id="@+id/task_list"
         android:layout_width="wrap_content"
-        android:layout_height="516dp"
+        android:layout_height="390dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </ListView>
 
