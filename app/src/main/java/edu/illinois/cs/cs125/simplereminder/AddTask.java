@@ -8,18 +8,16 @@ import edu.illinois.cs.cs125.lib.*;
 
 public class AddTask extends AppCompatActivity {
 
+    Button addTask = findViewById(R.id.addTask);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
-
-        Button addTask = findViewById(R.id.addTask);
-        addTask.setOnClickListener(new );
-
     }
 
 
-    protected Task createNewTask(String taskName) {
+    protected Task createNewTask() {
 
     }
 }
