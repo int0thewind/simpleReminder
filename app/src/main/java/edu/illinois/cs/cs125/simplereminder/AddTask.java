@@ -18,7 +18,6 @@ public class AddTask extends AppCompatActivity {
 
     }
 
-
     protected Task createNewTask() {
         return null;
     }
