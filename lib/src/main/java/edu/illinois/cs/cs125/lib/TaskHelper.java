@@ -42,6 +42,14 @@ public class TaskHelper {
         }
     }
 
+    public static void setFinish(Task task) {
+        for (Task toCheck : TaskStorage.getStorage()) {
+            if (toCheck.equals(task)) {
+                toCheck.isFinish();
+            }
+        }
+    }
+
     /**
      * Remove a Task based on its ID.
      * @param id the ID to locate the task to remove

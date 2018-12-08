@@ -20,7 +20,4 @@ public final class TaskStorage {
         return storage;
     }
 
-    public static void writeFile() {
-
-    }
 }
