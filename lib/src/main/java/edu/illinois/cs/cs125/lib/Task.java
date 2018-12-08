@@ -9,11 +9,15 @@ import java.util.Date;
  */
 public class Task {
 
-
     /**
      * This String stores the name of the task.
      */
     private String taskName;
+
+    /**
+     * The status about whether a task is marked as finished by user or not.
+     */
+    private boolean isFinish;
 
     /**
      * This is the notification time of one Task
@@ -22,35 +26,11 @@ public class Task {
     /**
      * This defines the priority of this Task based on the enum Priority.
      */
-    private Priority priority;
-
-    /**
-     * This enum value Priority provides three types of importance of one Task
-     */
-    public enum Priority {
-        /**
-         * The highest priority
-         */
-        High,
-        /**
-         * The medium priority
-         */
-        Medium,
-        /**
-         * The lowest priority
-         */
-        Low;
-    }
 
     /**
      * The unique id of each task
      */
     private int id;
-
-    /**
-     * The note of the task
-     */
-    private String note;
 
     /**
      * The total number of tasks created
@@ -119,23 +99,19 @@ public class Task {
         this.notification = notification;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
     public int getId() {
         return id;
     }
 
-    public String getNote() {
-        return note;
+    public boolean isFinish() {
+        return isFinish;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setFinish(boolean finish) {
+        isFinish = finish;
+    }
+
+    public String toString() {
+        return this.getTaskName() + "has notification on" +this.getNotification().toString();
     }
 }
