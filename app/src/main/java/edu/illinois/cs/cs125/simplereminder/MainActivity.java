@@ -6,9 +6,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import edu.illinois.cs.cs125.lib.*;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Declaring the floating action button in the layout
+     */
     private FloatingActionButton fab;
+
+    /**
+     * Declaring the list view in the layout
+     */
+    private ListView taskList;
+
+    /**
+     * The public array adapter
+     */
+    private static ArrayAdapter<Task> taskArrayAdapter;
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -27,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    protected void refreshTaskArrayAdapter
 
 
 }

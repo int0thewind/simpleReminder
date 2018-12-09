@@ -60,7 +60,6 @@ public class Task {
             this.taskName = DEFAULT_TASK_NAME;
             this.id = totalTask + 1;
             totalTask++;
-            TaskStorage.getStorage().add(this);
         } catch (Exception e) {
             System.out.println("Invalid input, please input at least a character for a task");
         }
@@ -79,7 +78,6 @@ public class Task {
             this.taskName = setTaskName;
             this.id = totalTask + 1;
             totalTask++;
-            TaskStorage.getStorage().add(this);
         } catch (Exception e) {
             System.out.println("Invalid input, please input at least a character for a task");
         }

@@ -11,7 +11,12 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".AddTask" />
-        <activity android:name=".EditTask"></activity>
+        <activity android:name=".EditTask" />
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

@@ -62,8 +62,10 @@ public class AddTask extends AppCompatActivity {
                     taskTitle = "New Task";
                 }
                 Task task = new Task(taskTitle);
+
                 //todo set the time
 
+                TaskStorage.getStorage().add(task);
                 //Jump back to the main activity
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
                 startActivity(jumpBackToMainActivity);
