@@ -2,6 +2,7 @@ package edu.illinois.cs.cs125.lib;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -33,6 +34,7 @@ public class TaskHelper {
                 toReturn.add(task);
             }
         }
+        Collections.sort(toReturn);
         return toReturn;
     }
 
