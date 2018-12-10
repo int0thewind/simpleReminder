@@ -1,7 +1,7 @@
 package edu.illinois.cs.cs125.lib;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.text.DateFormat;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 /**
@@ -23,7 +23,7 @@ public class Task {
     /**
      * This is the notification time of one Task
      */
-    private Date notification;
+    private GregorianCalendar notification;
 
     /**
      * This defines the priority of this Task based on the enum Priority.
@@ -54,6 +54,8 @@ public class Task {
     /**
      * Initial constructor that has no String as reference
      * Automatically name this task as New Task
+     * Note that this constructor does not add task to the TaskStorage
+     * You may need to indicate this in the Activity java class file
      */
     public Task() {
         try {
@@ -68,6 +70,8 @@ public class Task {
     /**
      * Initial constructor that takes a String value as the name of the Task
      * @param setTaskName the name of the Task
+     * Note that this constructor does not add task to the TaskStorage
+     * You may need to indicate this in the Activity java class file
      */
     public Task(String setTaskName) {
         if (setTaskName.equals("") || setTaskName.equals(INVALID_INPUT)) {
@@ -91,11 +95,16 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public Date getNotification() {
+    public GregorianCalendar getNotification() {
         return notification;
     }
 
-    public void setNotification(Date notification) {
+    public String getNotificationToString() {
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
+        return dateFormat.format(this.notification);
+    }
+
+    public void setNotification(GregorianCalendar notification) {
         this.notification = notification;
     }
 
@@ -107,13 +116,13 @@ public class Task {
         this.isFinish = true;
     }
 
-    public void setFinish(boolean finish) {
-        isFinish = finish;
+    public void isNotFinish() {
+        this.isFinish = false;
     }
 
     @Override
     public String toString() {
-        return this.getTaskName() + "has notification on" +this.getNotification().toString();
+        return this.getTaskName() + " is due on" + this.getNotificationToString();
     }
 
     @Override
