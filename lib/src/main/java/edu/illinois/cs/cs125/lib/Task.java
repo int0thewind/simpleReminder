@@ -1,6 +1,7 @@
 package edu.illinois.cs.cs125.lib;
 
 import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ import java.util.Objects;
  * The constructor for all the Task user created.
  * For
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     /**
      * This String stores the name of the task.
@@ -23,7 +24,7 @@ public class Task {
     /**
      * This is the notification time of one Task
      */
-    private DateTime notification;
+    private Calendar notification;
 
     /**
      * This defines the priority of this Task based on the enum Priority.
@@ -95,16 +96,25 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public DateTime getNotification() {
+    public Calendar getNotification() {
         return notification;
     }
 
     public String getNotificationToString() {
-        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
-        return dateFormat.format(this.notification);
+        Calendar now = this.getNotification();
+
+        int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH) + 1;
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        int second = now.get(Calendar.SECOND);
+
+        return year + "." + month + "." + day + "." + hour + "." + minute;
     }
 
-    public void setNotification(DateTime notification) {
+
+    public void setNotification(Calendar notification) {
         this.notification = notification;
     }
 
@@ -120,9 +130,16 @@ public class Task {
         this.isFinish = false;
     }
 
+    public boolean getFinish() {
+        return this.isFinish;
+    }
+
     @Override
     public String toString() {
-        return this.getTaskName() + " is due on" + this.getNotificationToString();
+        if (!this.getFinish()) {
+            return this.getNotificationToString() + ";" + this.getTaskName();
+        }
+        return "[Finished];" + this.getNotificationToString() + ";" + this.getTaskName();
     }
 
     @Override
@@ -137,4 +154,13 @@ public class Task {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public int compareTo(Task task) {
+        if (task == null) {
+            throw new IllegalArgumentException();
+        }
+        return this.getNotification().compareTo(task.getNotification());
+    }
+
 }
