@@ -8,7 +8,7 @@ import java.util.Objects;
  * The constructor for all the Task user created.
  * For
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     /**
      * This String stores the name of the task.
@@ -137,4 +137,13 @@ public class Task {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public int compareTo(Task task) {
+        if (task == null) {
+            throw new IllegalArgumentException();
+        }
+        return Integer.compare(this.getId(), task.getId());
+    }
+
 }

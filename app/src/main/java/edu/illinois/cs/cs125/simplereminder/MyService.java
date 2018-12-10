@@ -38,8 +38,7 @@ public class MyService extends Service implements Runnable {
                 initialiseNotification();
 
             }
-        }
-    }
+        };
 
     private final static String TAG = "MyService";
 
