@@ -23,13 +23,10 @@ public class MainActivity extends AppCompatActivity {
     private ListView taskList;
 
     /**
-     * The public array adapter for the list view
+     * The public array adapter
      */
     private static ArrayAdapter<Task> taskArrayAdapter;
 
-    /**
-     * The debug tag
-     */
     private static final String TAG = "MainActivity";
 
     @Override
@@ -37,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        //Initialise the service - by helper function
-        runService();
-
-        //Initialising the button
         fab = findViewById(R.id.changeActivity);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,18 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "jumped to add task activity");
             }
         });
-
-        //Initialising the List View
-        //todo list view creation
-
     }
 
-    /**
-     * A helper function to start the background service
-     */
-    protected void runService() {
-        Intent startService = new Intent(MainActivity.this, MyService.class);
-        startService(startService);
-        Log.d(TAG, "service initialised");
-    }
+    protected void refreshTaskArrayAdapter
+
+
 }

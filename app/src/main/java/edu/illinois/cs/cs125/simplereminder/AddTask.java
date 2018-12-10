@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+
 import edu.illinois.cs.cs125.lib.*;
 
 public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -35,6 +36,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     private TextView timePreview = findViewById(R.id.time_preview);
 
     private Calendar c = Calendar.getInstance();
+
 
     /**
      * OnCreate method initialised when this activity started
@@ -73,7 +75,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 Task task = new Task(taskTitle);
 
                 //todo set the time
-                
+
 
                 TaskStorage.getStorage().add(task);
                 //Jump back to the main activity
@@ -95,7 +97,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
         String currentDateString = java.text.DateFormat.getDateInstance(java.text.DateFormat.FULL).format(c.getTime());
         datePreview.setText(currentDateString);
     }
