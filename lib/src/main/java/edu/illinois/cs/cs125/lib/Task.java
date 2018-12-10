@@ -1,10 +1,7 @@
 package edu.illinois.cs.cs125.lib;
 
 import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Objects;
 
 /**
@@ -26,7 +23,7 @@ public class Task {
     /**
      * This is the notification time of one Task
      */
-    private Date notification;
+    private GregorianCalendar notification;
 
     /**
      * This defines the priority of this Task based on the enum Priority.
@@ -98,7 +95,7 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public Date getNotification() {
+    public GregorianCalendar getNotification() {
         return notification;
     }
 
@@ -107,7 +104,7 @@ public class Task {
         return dateFormat.format(this.notification);
     }
 
-    public void setNotification(Date notification) {
+    public void setNotification(GregorianCalendar notification) {
         this.notification = notification;
     }
 
@@ -119,13 +116,13 @@ public class Task {
         this.isFinish = true;
     }
 
-    public void setFinish(boolean finish) {
-        isFinish = finish;
+    public void isNotFinish() {
+        this.isFinish = false;
     }
 
     @Override
     public String toString() {
-        return this.getTaskName() + " is due on" +this.getNotification().toString();
+        return this.getTaskName() + " is due on" + this.getNotificationToString();
     }
 
     @Override

@@ -1,7 +1,9 @@
 package edu.illinois.cs.cs125.lib;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -24,10 +26,10 @@ public class TaskHelper {
      * A filter function to return a list of all the overdue task
      * @return a list of overdue task
      */
-    public static List<Task> isOverdue() {
+    public static List<Task> isAtTheTime() {
         List<Task> toReturn = new ArrayList<>();
         for (Task task : TaskStorage.getStorage()) {
-            if (task.getNotification().compareTo(new Date()) > 0) {
+            if (task.getNotification().compareTo(new GregorianCalendar()) > 0) {
                 toReturn.add(task);
             }
         }
