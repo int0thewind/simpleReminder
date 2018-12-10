@@ -23,7 +23,7 @@ public class Task {
     /**
      * This is the notification time of one Task
      */
-    private GregorianCalendar notification;
+    private DateTime notification;
 
     /**
      * This defines the priority of this Task based on the enum Priority.
@@ -95,7 +95,7 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public GregorianCalendar getNotification() {
+    public DateTime getNotification() {
         return notification;
     }
 
@@ -104,7 +104,7 @@ public class Task {
         return dateFormat.format(this.notification);
     }
 
-    public void setNotification(GregorianCalendar notification) {
+    public void setNotification(DateTime notification) {
         this.notification = notification;
     }
 
