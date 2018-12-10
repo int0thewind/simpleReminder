@@ -43,7 +43,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(jumpToAddTaskActivity);
                 Log.d(TAG, "jumped to add task activity");
             }
-        });
+        }
+
+
+
+        );
     }
 
 

@@ -92,7 +92,7 @@ public class MyService extends Service implements Runnable {
     }
 
     public void run() {
-
+.
     }
 
     /**

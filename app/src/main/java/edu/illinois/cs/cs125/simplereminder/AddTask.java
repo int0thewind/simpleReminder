@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 
 import edu.illinois.cs.cs125.lib.*;
@@ -35,7 +36,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
     private TextView timePreview = findViewById(R.id.time_preview);
 
-    private Calendar c = Calendar.getInstance();
+    private java.util.Calendar c = java.util.Calendar.getInstance();
 
 
     /**
@@ -67,15 +68,16 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 String taskTitle;
                 if (titleInput.getText() == null || titleInput.getText().toString().trim().length() == 0) {
                     taskTitle = "New Task"; //input 为连续空格、空、或null时，自动命名为New Task
-                    Log.d(TAG, "Invalid title");
+                    Log.d(TAG, "Invalid title put in");
                 } else {
                     taskTitle = titleInput.getText().toString();
-                    Log.d(TAG, "Valid title");
+                    Log.d(TAG, "Valid title put in");
                 }
                 Task task = new Task(taskTitle);
+                Log.d(TAG, "new task added into storage");
 
-                task.setNotification(new DateTime(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE)));
-
+                task.setNotification(c);
+                Log.d(TAG, "notification set");
 
                 TaskStorage.getStorage().add(task);
                 //Jump back to the main activity
@@ -84,10 +86,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 Log.d(TAG, "jump back to main activity");
             }
         });
-
     }
-
-
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
