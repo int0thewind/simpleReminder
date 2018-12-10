@@ -74,7 +74,7 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 }
                 Task task = new Task(taskTitle);
 
-                //todo set the time
+                task.setNotification(new DateTime(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH), c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE)));
 
 
                 TaskStorage.getStorage().add(task);
@@ -82,9 +82,6 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
                 startActivity(jumpBackToMainActivity);
                 Log.d(TAG, "jump back to main activity");
-                //todo what is context?
-                //Toast.makeText(, "Task " + taskTitle + " added!");
-                Log.d(TAG, "toast message sent");
             }
         });
 
