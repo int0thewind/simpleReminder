@@ -8,7 +8,7 @@ public final class TaskStorage {
      * A List to Storage all the task created by the user
      */
 
-    private static ArrayList<Task> storage;
+    private static ArrayList<Task> storage = new ArrayList<Task>();
 
     private static File storate;
 

@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import edu.illinois.cs.cs125.lib.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        ArrayList<String> taskString = new ArrayList<String>();
+
+        for (Task task : TaskStorage.getStorage()) {
+            taskString.add(task.toString());
+        }
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskString);
+
+        taskList.setAdapter(arrayAdapter);
+
         fab = findViewById(R.id.changeActivity);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void refreshTaskArrayAdapter
+    //protected void refreshTaskArrayAdapter
 
 
 }
