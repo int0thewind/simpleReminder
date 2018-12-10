@@ -1,7 +1,6 @@
 package edu.illinois.cs.cs125.lib;
 
 import java.text.DateFormat;
-import android.icu.util.*;
 import java.util.GregorianCalendar;
 import java.util.Objects;
 
@@ -9,7 +8,7 @@ import java.util.Objects;
  * The constructor for all the Task user created.
  * For
  */
-public class Task implements Comparable<Task> {
+public class Task {
 
     /**
      * This String stores the name of the task.
@@ -24,7 +23,7 @@ public class Task implements Comparable<Task> {
     /**
      * This is the notification time of one Task
      */
-    private android.icu.util.Calendar notification;
+    private GregorianCalendar notification;
 
     /**
      * This defines the priority of this Task based on the enum Priority.
@@ -123,7 +122,7 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return this.getNotificationToString() + ": " + this.getTaskName();
+        return this.getTaskName() + " is due on" + this.getNotificationToString();
     }
 
     @Override
@@ -137,13 +136,5 @@ public class Task implements Comparable<Task> {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public int compareTo(Task task) {
-        if (task == null) {
-            throw new IllegalArgumentException();
-        }
-        return this.toString().compareTo(task.toString());
     }
 }
