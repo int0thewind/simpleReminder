@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -18,16 +20,21 @@ import android.widget.Toast;
 
 import edu.illinois.cs.cs125.lib.*;
 
-public class AddTask extends AppCompatActivity {
+public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     public final static String TAG = "AddTask";
 
     private Button addTask = findViewById(R.id.addTask);
+
     private Button setDate = findViewById(R.id.set_date);
 
     private EditText titleInput = findViewById(R.id.new_task_title);
 
     private TextView datePreview = findViewById(R.id.date_preview);
+
+    private TextView timePreview = findViewById(R.id.time_preview);
+
+    private Calendar c = Calendar.getInstance();
 
     /**
      * OnCreate method initialised when this activity started
@@ -38,15 +45,14 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
 
-
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //todo time and date picker
-
-                //todo datePreview preview
-
-                //todo debug log
+                Log.d(TAG, "set date clicked");
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "date picker");
+                DialogFragment timePicker = new TimePickerFragment();
+                timePicker.show(getSupportFragmentManager(), "time picker");
             }
         });
 
@@ -56,14 +62,18 @@ public class AddTask extends AppCompatActivity {
                 Log.d(TAG, "add task pressed");
 
                 //Create new task instance
-                String taskTitle = titleInput.getText().toString();
-                //todo 连续空格或者没有输入的正则表达式
-                if (taskTitle.equals("\\ ") || taskTitle == null) {
-                    taskTitle = "New Task";
+                String taskTitle;
+                if (titleInput.getText() == null || titleInput.getText().toString().trim().length() == 0) {
+                    taskTitle = "New Task"; //input 为连续空格、空、或null时，自动命名为New Task
+                    Log.d(TAG, "Invalid title");
+                } else {
+                    taskTitle = titleInput.getText().toString();
+                    Log.d(TAG, "Valid title");
                 }
                 Task task = new Task(taskTitle);
 
                 //todo set the time
+                
 
                 TaskStorage.getStorage().add(task);
                 //Jump back to the main activity
@@ -71,28 +81,29 @@ public class AddTask extends AppCompatActivity {
                 startActivity(jumpBackToMainActivity);
                 Log.d(TAG, "jump back to main activity");
                 //todo what is context?
-                Toast.makeText(, "Task " + taskTitle + " added!");
+                //Toast.makeText(, "Task " + taskTitle + " added!");
                 Log.d(TAG, "toast message sent");
             }
         });
 
     }
 
-    /*@Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        // Use the current time as the default values for the picker
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
 
-        // Create a new instance of TimePickerDialog and return it
-        return new TimePickerDialog(getActivity(), this, hour, minute,
-                DateFormat.is24HourFormat(getActivity()));
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+        String currentDateString = java.text.DateFormat.getDateInstance(java.text.DateFormat.FULL).format(c.getTime());
+        datePreview.setText(currentDateString);
     }
 
+    @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        // Do something with the time chosen by the user
-    }*/
-
-
+        c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        c.set(Calendar.MINUTE,minute);
+        timePreview.setText(hourOfDay + " : " + minute);
+    }
 }
