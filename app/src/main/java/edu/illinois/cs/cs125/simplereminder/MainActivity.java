@@ -85,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         restoreTaskStorage();
+        Log.d(TAG, "List restored");
         refreshTaskArrayAdapter();
+        Log.d(TAG, "List refreshed");
 
 
         timer.schedule(timerTask, 10000);
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskHelper.reverseFinish(position);
                 refreshTaskArrayAdapter();
+                Log.d(TAG, "A task has its finish state changed");
             }
         });
 
@@ -142,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         String json = gson.toJson(list);
         editor.putString(key, json);
         editor.apply();
+        Log.d(TAG, "saving helper function finished");
     }
 
     protected ArrayList<Task> getArrayList(String key){
@@ -150,9 +154,11 @@ public class MainActivity extends AppCompatActivity {
         String json = prefs.getString(key, null);
         Type type = new TypeToken<ArrayList<Task>>() {}.getType();
         ArrayList<Task> toReturn = gson.fromJson(json, type);
+        Log.d(TAG, "getting helper function finished");
 
         if (toReturn == null) {
             toReturn = new ArrayList<>();
+            Log.d(TAG, "saving helper function finished with null detected");
         }
         return toReturn;
     }
@@ -170,39 +176,28 @@ public class MainActivity extends AppCompatActivity {
         this.taskList = findViewById(R.id.task_list);
         taskArrayAdapter = new ArrayAdapter<Task>(this, android.R.layout.simple_list_item_1, TaskHelper.getAllTask());
         taskList.setAdapter(taskArrayAdapter);
+        Log.d(TAG, "refresh helper function finished");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        try {
-            refreshTaskArrayAdapter();
-        } catch (Exception e) {
-            Log.d(TAG, e.toString());
-        }
+        refreshTaskArrayAdapter();
+        Log.d(TAG, "List refreshed");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        saveArrayList(TaskHelper.getAllTask(), RESTORE_KEY);
+        Log.d(TAG, "List saved");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         saveArrayList(TaskHelper.getAllTask(), RESTORE_KEY);
+        Log.d(TAG, "List saved");
     }
 
-    /*protected void startService() {
-        Intent startForegroundService = new Intent(this, MyService.class);
-        PendingIntent pendingIntent =PendingIntent.getActivity(this, 0,
-                startForegroundService, 0);
-
-        Notification foregroundNotification = new Notification.Builder(this, CHANNEL_ID_FOREGROUND)
-                .setContentTitle("simpleList is running")
-                .setContentTitle("Press to start simpleList")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentIntent(pendingIntent)
-                //.setTicker()
-                .build();
-
-
-            startForegroundService(foregroundNotification);
-
-    }*/
 }
