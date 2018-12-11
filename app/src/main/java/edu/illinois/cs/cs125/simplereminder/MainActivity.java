@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        Intent startMyService = new Intent(MainActivity.this, MyService.class);
+        startService(startMyService);
+
         refreshTaskArrayAdapter();
 
         fab = findViewById(R.id.changeActivity);

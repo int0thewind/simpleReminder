@@ -38,6 +38,30 @@ public class TaskHelper {
         return toReturn;
     }
 
+    public static String[] isAtTheTimeTitle() {
+        List<Task> toCheck = isAtTheTime();
+        String[] toReturn = new String[toCheck.size()];
+        if (toCheck.size() == 0) {
+            return toReturn;
+        }
+        for (int i = 0; i < toReturn.length; i++) {
+            toReturn[i] = toCheck.get(i).getTaskName();
+        }
+        return toReturn;
+    }
+
+    public static String[] isAtTheTimeDate() {
+        List<Task> toCheck = isAtTheTime();
+        String[] toReturn = new String[toCheck.size()];
+        if (toCheck.size() == 0) {
+            return toReturn;
+        }
+        for (int i = 0; i < toReturn.length; i++) {
+            toReturn[i] = toCheck.get(i).getNotificationToString();
+        }
+        return toReturn;
+    }
+
     /*public static boolean isZero() {
         return TaskStorage.getStorage().size() == 0;
     }*/
