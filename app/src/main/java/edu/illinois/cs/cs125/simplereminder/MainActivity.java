@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -59,6 +60,23 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "activity finished");
             }
         });
+
+        taskList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TaskHelper.setFinish(position);
+                refreshTaskArrayAdapter();
+            }
+        });
+
+        taskList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                TaskHelper.getAllTask().remove(position);
+                refreshTaskArrayAdapter();
+                return true;
+            }
+        });
     }
 
     protected void startService() {
@@ -88,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        refreshTaskArrayAdapter();
     }
 
     @Override
