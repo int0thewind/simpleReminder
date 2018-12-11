@@ -1,6 +1,11 @@
 package edu.illinois.cs.cs125.simplereminder;
 
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
+import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private ListView taskList;
 
+    public static final String CHANNEL_ID_FOREGROUND = "simpleList Foreground";
+
     /**
      * The general array adapter
      */
@@ -38,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Intent startMyService = new Intent(MainActivity.this, MyService.class);
         startService(startMyService);
 
+        startService();
         refreshTaskArrayAdapter();
 
         fab = findViewById(R.id.changeActivity);
@@ -51,6 +59,24 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "activity finished");
             }
         });
+    }
+
+    protected void startService() {
+        Intent startForegroundService = new Intent(this, MyService.class);
+        PendingIntent pendingIntent =PendingIntent.getActivity(this, 0,
+                startForegroundService, 0);
+
+        Notification foregroundNotification = new Notification.Builder(this, CHANNEL_ID_FOREGROUND)
+                .setContentTitle("simpleList is running")
+                .setContentTitle("Press to start simpleList")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentIntent(pendingIntent)
+                //.setTicker()
+                .build();
+
+
+            startForegroundService(foregroundNotification);
+
     }
 
     protected void refreshTaskArrayAdapter() {

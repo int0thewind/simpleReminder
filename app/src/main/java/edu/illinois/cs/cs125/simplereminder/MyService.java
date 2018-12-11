@@ -66,6 +66,12 @@ public class MyService extends Service {
         }
     };
 
+    private Notification foregroundNotification;
+
+    Intent foreGroundIntent = new Intent(this, MainActivity.class);
+
+    PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, foreGroundIntent, 0);
+
     //private Intent intent = new Intent(myService, MainActivity.class);
 
     //private PendingIntent navigateToMainActivity = PendingIntent.getActivity(this, 0, intent, 0);

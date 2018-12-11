@@ -28,7 +28,7 @@ public class TaskHelper {
     public static List<Task> isAtTheTime() {
         List<Task> toReturn = new ArrayList<>();
         for (Task task : TaskStorage.getStorage()) {
-            if (task.getNotification() != null) {
+            if (task.getNotification() != null || task.getFinish() == false) {
                 if (task.getNotification().compareTo(new GregorianCalendar()) >= 0) {
                     toReturn.add(task);
                 }
