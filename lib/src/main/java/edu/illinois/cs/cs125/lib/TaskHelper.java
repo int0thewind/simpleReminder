@@ -81,12 +81,8 @@ public class TaskHelper {
 
     /******************/
 
-    public static void setFinish(int id) {
-        for (Task toCheck : TaskStorage.getStorage()) {
-            if (toCheck.getId() == id) {
-                toCheck.isFinish();
-            }
-        }
+    public static void setFinish(int index) {
+        TaskStorage.getStorage().get(index).isFinish();
     }
 
     public static void setFinish(Task task) {
@@ -97,16 +93,17 @@ public class TaskHelper {
         }
     }
 
-    /**
-     * Remove a Task based on its ID.
-     * @param id the ID to locate the task to remove
-     */
+    /*@Deprecated
     public static void removeTask(int id) {
         for (Task toCheck : TaskStorage.getStorage()) {
             if (toCheck.getId() == id) {
                 TaskStorage.getStorage().remove(toCheck);
             }
         }
+    }*/
+
+    public static void removeTask(int index) {
+        TaskStorage.getStorage().remove(index);
     }
 
     /**
