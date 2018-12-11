@@ -1,13 +1,11 @@
 package edu.illinois.cs.cs125.simplereminder;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,10 +13,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import java.util.Calendar;
-
 
 import edu.illinois.cs.cs125.lib.*;
 
@@ -94,6 +90,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
                 startActivity(jumpBackToMainActivity);
                 Log.d(TAG, "jump back to main activity");
+
+                Log.d(TAG, "activity finished");
+                finish();
             }
         });
     }

@@ -10,8 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import edu.illinois.cs.cs125.lib.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent jumpToAddTaskActivity = new Intent(MainActivity.this, AddTask.class);
                 startActivity(jumpToAddTaskActivity);
                 Log.d(TAG, "jumped to add task activity");
+                Log.d(TAG, "activity finished");
+                finish();
             }
         });
     }
