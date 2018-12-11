@@ -40,6 +40,24 @@ public class TaskHelper {
         return toReturn;
     }
 
+    public static boolean isZero() {
+        return TaskStorage.getStorage().size() == 0;
+    }
+
+    public static String[] returnTaskName() {
+        if (isZero()) {
+            return new String[0];
+        }
+        List<String> toReturn = new ArrayList<>();
+        for (Task task : TaskStorage.getStorage()) {
+            toReturn.add(task.toString());
+        }
+        return (String[]) toReturn.toArray();
+    }
+
+
+    /******************/
+
     public static void setFinish(int id) {
         for (Task toCheck : TaskStorage.getStorage()) {
             if (toCheck.getId() == id) {

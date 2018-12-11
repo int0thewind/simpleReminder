@@ -26,15 +26,15 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
 
     public final static String TAG = "AddTask";
 
-    private Button addTask = findViewById(R.id.addTask);
+    private Button addTask;
 
-    private Button setDate = findViewById(R.id.set_date);
+    private Button setDate;
 
-    private EditText titleInput = findViewById(R.id.new_task_title);
+    private EditText titleInput;
 
-    private TextView datePreview = findViewById(R.id.date_preview);
+    private TextView datePreview;
 
-    private TextView timePreview = findViewById(R.id.time_preview);
+    private TextView timePreview;
 
     private java.util.Calendar c = java.util.Calendar.getInstance();
 
@@ -47,6 +47,16 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
+
+        addTask = findViewById(R.id.addTask);
+
+        setDate = findViewById(R.id.set_date);
+
+        titleInput = findViewById(R.id.new_task_title);
+
+        datePreview = findViewById(R.id.date_preview);
+
+        timePreview = findViewById(R.id.time_preview);
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override

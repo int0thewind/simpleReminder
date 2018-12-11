@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
     private ListView taskList;
 
     /**
-     * The public array adapter
+     * The general array adapter
      */
-    private static ArrayAdapter<Task> taskArrayAdapter;
+    private static ListAdapter taskArrayAdapter;
 
     private static final String TAG = "MainActivity";
 
@@ -36,15 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        ArrayList<String> taskString = new ArrayList<String>();
-
-        for (Task task : TaskStorage.getStorage()) {
-            taskString.add(task.toString());
-        }
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskString);
-
-        taskList.setAdapter(arrayAdapter);
+        refreshTaskArrayAdapter();
 
         fab = findViewById(R.id.changeActivity);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +51,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //protected void refreshTaskArrayAdapter
+    protected void refreshTaskArrayAdapter() {
+        this.taskList = findViewById(R.id.task_list);
+        taskArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, TaskHelper.returnTaskName());
+        taskList.setAdapter(taskArrayAdapter);
+    }
 
 
 }

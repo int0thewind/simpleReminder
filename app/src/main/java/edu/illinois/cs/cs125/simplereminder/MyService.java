@@ -1,3 +1,4 @@
+/*
 package edu.illinois.cs.cs125.simplereminder;
 
 import android.app.NotificationChannel;
@@ -19,14 +20,18 @@ import edu.illinois.cs.cs125.lib.*;
 
 public class MyService extends Service implements Runnable {
 
-    /**
+    */
+/**
      * Default constructor that takes no arguments
-     */
+     *//*
+
     public MyService() { }
 
-    /**
+    */
+/**
      * Declaring the notification push component
-     */
+     *//*
+
     private NotificationCompat.Builder taskDue;
 
     private Timer scheduleTask = new Timer("Push Notification");
@@ -63,9 +68,11 @@ public class MyService extends Service implements Runnable {
         }
     }
 
-    /**
+    */
+/**
      * A helper function to initialise notification
-     */
+     *//*
+
     public void initialiseNotification() {
         taskDue = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_push_notification)
@@ -95,10 +102,12 @@ public class MyService extends Service implements Runnable {
 .
     }
 
-    /**
+    */
+/**
      * A helper function to show whether there are Tasks overdue
      * @return true if there are tasks overdue, false otherwise
-     */
+     *//*
+
     protected boolean hasTaskAtTheTime() {
         List<Task> toShow = TaskHelper.isAtTheTime();
         Log.d(TAG, "get a list of due task");
@@ -110,10 +119,12 @@ public class MyService extends Service implements Runnable {
         return true;
     }
 
-    /**
+    */
+/**
      * A helper function to generate the notification text about the task overdue in text;
      * @return the string to show in notification text bar
-     */
+     *//*
+
     protected String getDueTaskText() {
         if (hasTaskAtTheTime()) {
             List<Task> toShow = TaskHelper.isAtTheTime();
@@ -134,3 +145,4 @@ public class MyService extends Service implements Runnable {
 
 
 }
+*/
