@@ -106,9 +106,8 @@ public class Task implements Comparable<Task> {
         int day = now.get(Calendar.DAY_OF_MONTH);
         int hour = now.get(Calendar.HOUR_OF_DAY);
         int minute = now.get(Calendar.MINUTE);
-        int second = now.get(Calendar.SECOND);
 
-        return year + "." + month + "." + day + "." + hour + "." + minute;
+        return year + "." + month + "." + day + " - " + hour + "." + minute;
     }
 
 
