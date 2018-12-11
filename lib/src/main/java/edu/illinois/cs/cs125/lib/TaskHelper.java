@@ -1,5 +1,6 @@
 package edu.illinois.cs.cs125.lib;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.GregorianCalendar;
@@ -15,14 +16,23 @@ public class TaskHelper {
 
     /**
      * A helper function to get all task.
+     *
      * @return a list of all the task user created
      */
-    public static List<Task> getAllTask() {
+    public static ArrayList<Task> getAllTask() {
         return TaskStorage.getStorage();
+    }
+
+    public static void restoreAllTask(ArrayList<Task> toStore) {
+        if (toStore == null) {
+            TaskStorage.setStorage(new ArrayList<Task>());
+        }
+        TaskStorage.setStorage(toStore);
     }
 
     /**
      * A filter function to return a list of all the overdue task
+     *
      * @return a list of overdue task
      */
     public static List<Task> isAtTheTime() {
@@ -62,55 +72,13 @@ public class TaskHelper {
         return toReturn;
     }
 
-    /*public static boolean isZero() {
-        return TaskStorage.getStorage().size() == 0;
-    }*/
-
-    /*public static String[] returnTaskName() {
-        if (isZero()) {
-            return new String[0];
-        }
-
-        String[] strings = new String[TaskStorage.getStorage().size()];
-        for (int i = 0; i < strings.length; i++) {
-            strings[i] = TaskStorage.getStorage().get(i).toString();
-        }
-        return strings;
-    }*/
-
-
-    /******************/
-
-    public static void setFinish(int index) {
-        TaskStorage.getStorage().get(index).isFinish();
-    }
-
-    public static void setFinish(Task task) {
-        for (Task toCheck : TaskStorage.getStorage()) {
-            if (toCheck.equals(task)) {
-                toCheck.isFinish();
-            }
-        }
-    }
-
-    /*@Deprecated
-    public static void removeTask(int id) {
-        for (Task toCheck : TaskStorage.getStorage()) {
-            if (toCheck.getId() == id) {
-                TaskStorage.getStorage().remove(toCheck);
-            }
-        }
-    }*/
-
-    public static void removeTask(int index) {
-        TaskStorage.getStorage().remove(index);
-    }
-
     /**
-     * Remove a Task by its own reference
-     * @param task the task to remove
+     * Set a specific task's finish status as finish
+     * @param index
      */
-    public static void removeTask(Task task) {
-        TaskStorage.getStorage().remove(task);
+
+    public static void reverseFinish(int index) {
+        Task task = TaskStorage.getStorage().get(index);
+        task.reverseFinish();
     }
 }

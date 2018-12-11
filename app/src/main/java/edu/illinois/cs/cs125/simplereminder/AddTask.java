@@ -90,7 +90,8 @@ public class AddTask extends AppCompatActivity
                 Log.d(TAG, "task added to the storage");
 
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
-                startActivity(jumpBackToMainActivity);
+                jumpBackToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(jumpBackToMainActivity, 0);
                 Log.d(TAG, "jump back to main activity");
 
                 Log.d(TAG, "activity finished");

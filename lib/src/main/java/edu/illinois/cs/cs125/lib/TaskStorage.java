@@ -17,4 +17,7 @@ public abstract class TaskStorage {
         return storage;
     }
 
+    public static void setStorage(ArrayList<Task> storage) {
+        TaskStorage.storage = storage;
+    }
 }

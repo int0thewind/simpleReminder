@@ -119,12 +119,8 @@ public class Task implements Comparable<Task> {
         return id;
     }
 
-    public void isFinish() {
-        this.isFinish = true;
-    }
-
-    public void isNotFinish() {
-        this.isFinish = false;
+    public void reverseFinish() {
+        this.isFinish = this.isFinish != true;
     }
 
     public boolean getFinish() {
