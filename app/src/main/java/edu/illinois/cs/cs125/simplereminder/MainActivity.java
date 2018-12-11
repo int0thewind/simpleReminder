@@ -53,8 +53,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void refreshTaskArrayAdapter() {
         this.taskList = findViewById(R.id.task_list);
-        taskArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, TaskHelper.returnTaskName());
+        taskArrayAdapter = new ArrayAdapter<Task>(this, android.R.layout.simple_list_item_1, TaskHelper.getAllTask());
         taskList.setAdapter(taskArrayAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
 

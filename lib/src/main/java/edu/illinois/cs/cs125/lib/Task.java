@@ -137,9 +137,9 @@ public class Task implements Comparable<Task> {
     @Override
     public String toString() {
         if (!this.getFinish()) {
-            return this.getNotificationToString() + ";" + this.getTaskName();
+            return this.getNotificationToString() + " - " + this.getTaskName();
         }
-        return "[Finished];" + this.getNotificationToString() + ";" + this.getTaskName();
+        return "[Finished];" + this.getNotificationToString() + " - " + this.getTaskName();
     }
 
     @Override

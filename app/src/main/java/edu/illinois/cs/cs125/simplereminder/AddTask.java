@@ -74,10 +74,9 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
             public void onClick(View v) {
                 Log.d(TAG, "add task pressed");
 
-                //Create new task instance
                 String taskTitle;
                 if (titleInput.getText() == null || titleInput.getText().toString().trim().length() == 0) {
-                    taskTitle = "New Task"; //input 为连续空格、空、或null时，自动命名为New Task
+                    taskTitle = "New Task";
                     Log.d(TAG, "Invalid title put in");
                 } else {
                     taskTitle = titleInput.getText().toString();
@@ -90,7 +89,8 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
                 Log.d(TAG, "notification set");
 
                 TaskStorage.getStorage().add(task);
-                //Jump back to the main activity
+                Log.d(TAG, "task added to the storage");
+
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
                 startActivity(jumpBackToMainActivity);
                 Log.d(TAG, "jump back to main activity");
@@ -112,5 +112,10 @@ public class AddTask extends AppCompatActivity implements DatePickerDialog.OnDat
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
         c.set(Calendar.MINUTE,minute);
         timePreview.setText(hourOfDay + " : " + minute);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

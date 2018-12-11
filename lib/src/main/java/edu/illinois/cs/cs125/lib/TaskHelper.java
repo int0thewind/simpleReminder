@@ -48,11 +48,12 @@ public class TaskHelper {
         if (isZero()) {
             return new String[0];
         }
-        List<String> toReturn = new ArrayList<>();
-        for (Task task : TaskStorage.getStorage()) {
-            toReturn.add(task.toString());
+
+        String[] strings = new String[TaskStorage.getStorage().size()];
+        for (int i = 0; i < strings.length; i++) {
+            strings[i] = TaskStorage.getStorage().get(i).toString();
         }
-        return (String[]) toReturn.toArray();
+        return strings;
     }
 
 
