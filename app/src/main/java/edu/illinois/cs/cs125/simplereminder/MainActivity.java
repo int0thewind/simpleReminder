@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(jumpToAddTaskActivity);
                 Log.d(TAG, "jumped to add task activity");
                 Log.d(TAG, "activity finished");
-                finish();
             }
         });
     }
@@ -65,5 +64,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent startMyService = new Intent(MainActivity.this, MyService.class);
+        startService(startMyService);
+    }
 
 }
