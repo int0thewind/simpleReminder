@@ -1,7 +1,10 @@
 package edu.illinois.cs.cs125.simplereminder;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -89,15 +92,25 @@ public class AddTask extends AppCompatActivity
                 TaskStorage.getStorage().add(task);
                 Log.d(TAG, "task added to the storage");
 
+                createAlarm(c);
+
                 Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
                 jumpBackToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(jumpBackToMainActivity, 0);
                 Log.d(TAG, "jump back to main activity");
 
                 Log.d(TAG, "activity finished");
-                finish();
+                //finish();
             }
         });
+    }
+
+    protected void createAlarm(Calendar c) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, PushNotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
     @Override

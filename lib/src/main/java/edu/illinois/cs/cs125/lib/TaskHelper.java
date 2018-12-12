@@ -38,7 +38,7 @@ public class TaskHelper {
     public static List<Task> isAtTheTime() {
         List<Task> toReturn = new ArrayList<>();
         for (Task task : TaskStorage.getStorage()) {
-            if (task.getNotification() != null || task.getFinish() == false) {
+            if (task.getNotification() != null && !task.getFinish()) {
                 if (task.getNotification().compareTo(new GregorianCalendar()) >= 0) {
                     toReturn.add(task);
                 }
@@ -74,11 +74,24 @@ public class TaskHelper {
 
     /**
      * Set a specific task's finish status as finish
-     * @param index
+     * @param index index from the ListView, which is the same index to the ArrayList
      */
 
     public static void reverseFinish(int index) {
-        Task task = TaskStorage.getStorage().get(index);
-        task.reverseFinish();
+        try {
+            Task task = TaskStorage.getStorage().get(index);
+            task.reverseFinish();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void reverseNotified(int index) {
+        try {
+            Task task = TaskStorage.getStorage().get(index);
+            task.reverseNotified();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

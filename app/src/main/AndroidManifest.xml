@@ -20,14 +20,7 @@
         </activity>
 
         <activity android:name=".AddTask"> </activity>
-
-        <!---
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true">
-        </service>
-        -->
+        <receiver android:name=".PushNotificationReceiver"></receiver>
 
     </application>
 
