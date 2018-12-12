@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * General Channel ID for notification
      */
-    //todo:  what is channel ID?
     private final static String CHANNEL_ID = "Push due task";
 
     /**

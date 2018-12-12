@@ -15,7 +15,6 @@ public class PushNotificationReceiver extends BroadcastReceiver {
     /**
      * General Channel ID for notification
      */
-    //todo:  what is channel ID?
     private final static String CHANNEL_ID = "Push due task";
 
     private final static String GROUP_ID = "PushNotificationReceiver";
