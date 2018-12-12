@@ -1,20 +1,11 @@
 package edu.illinois.cs.cs125.simplereminder;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
-import android.preference.PreferenceManager;
-import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,15 +20,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import edu.illinois.cs.cs125.lib.*;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String GROUP_ID = "Push Notification";
 
     /**
      * Declaring the floating action button in the layout
@@ -49,15 +35,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private ListView taskList;
 
-    //private Timer timer = new Timer("Notification push");
-
-    /*private TimerTask timerTask = new TimerTask() {
-        @Override
-        public void run() {
-            pushNotification();
-        }
-    };*/
-
     /**
      * ArrayList restore key
      */
@@ -66,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * General Channel ID for notification
      */
-    //todo:  what is channel ID?
     private final static String CHANNEL_ID = "Push due task";
 
     /**
@@ -81,23 +57,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        //Intent startMyService = new Intent(MainActivity.this, MyService.class);
-        //startService(startMyService);
-
-        //startService();
-
-
         restoreTaskStorage();
         Log.d(TAG, "List restored");
         refreshTaskArrayAdapter();
         Log.d(TAG, "List refreshed");
         createNotificationChannel();
         Log.d(TAG, "Notification Channel initialised");
-        //startPushNotificationJob();
-        //Log.d(TAG, "Notification Job started");
-
-
-        //timer.schedule(timerTask, 10000);
 
         fab = findViewById(R.id.changeActivity);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -129,30 +94,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*protected void pushNotification() {
-        List<Task> toShow = TaskHelper.isAtTheTime();
-        for (Task task: toShow) {
-            Notification pushDueTask = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ic_push_notification)
-                    .setContentTitle(task.getTaskName() + "is due!")
-                    .setContentText(task.getNotificationToString())
-                    .setGroup(GROUP_ID)
-                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                    //.setContentIntent(this.navigateToMainActivity)
-                    .build();
-            Log.d(TAG, "notification pushed!");
-        }
-    }*/
-
-    /*protected void startPushNotificationJob() {
-        ComponentName componentName = new ComponentName(this, PushNotificationJob.class);
-        JobInfo.Builder builder = new JobInfo.Builder(693, componentName)
-                .setPeriodic(60000)
-                .setPersisted(true);
-        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        jobScheduler.schedule(builder.build());
-    }*/
 
     private void createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because
