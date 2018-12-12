@@ -1,8 +1,13 @@
 package edu.illinois.cs.cs125.simplereminder;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -44,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private ListView taskList;
 
-    private Timer timer = new Timer("Notification push");
+    //private Timer timer = new Timer("Notification push");
 
-    private TimerTask timerTask = new TimerTask() {
+    /*private TimerTask timerTask = new TimerTask() {
         @Override
         public void run() {
             pushNotification();
         }
-    };
+    };*/
 
     /**
      * ArrayList restore key
@@ -63,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
      */
     //todo:  what is channel ID?
     private final static String CHANNEL_ID = "Push due task";
-
-    //public static final String CHANNEL_ID_FOREGROUND = "simpleList Foreground";
 
     /**
      * The general array adapter
@@ -88,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "List restored");
         refreshTaskArrayAdapter();
         Log.d(TAG, "List refreshed");
+        createNotificationChannel();
+        Log.d(TAG, "Notification Channel initialised");
+        //startPushNotificationJob();
+        //Log.d(TAG, "Notification Job started");
 
 
-        timer.schedule(timerTask, 10000);
+        //timer.schedule(timerTask, 10000);
 
         fab = findViewById(R.id.changeActivity);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void pushNotification() {
+    /*protected void pushNotification() {
         List<Task> toShow = TaskHelper.isAtTheTime();
         for (Task task: toShow) {
             Notification pushDueTask = new NotificationCompat.Builder(MainActivity.this, CHANNEL_ID)
@@ -135,6 +142,36 @@ public class MainActivity extends AppCompatActivity {
                     //.setContentIntent(this.navigateToMainActivity)
                     .build();
             Log.d(TAG, "notification pushed!");
+        }
+    }*/
+
+    /*protected void startPushNotificationJob() {
+        ComponentName componentName = new ComponentName(this, PushNotificationJob.class);
+        JobInfo.Builder builder = new JobInfo.Builder(693, componentName)
+                .setPeriodic(60000)
+                .setPersisted(true);
+        JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(builder.build());
+    }*/
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            //Initialise all the reference
+            CharSequence name = "Push Due Task";
+            String description = "When a task is due, push an alert";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            //put all thouse reference above to create a new channel
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
         }
     }
 
@@ -169,8 +206,6 @@ public class MainActivity extends AppCompatActivity {
         }
         TaskHelper.restoreAllTask(getArrayList(RESTORE_KEY));
     }
-
-
 
     protected void refreshTaskArrayAdapter() {
         this.taskList = findViewById(R.id.task_list);

@@ -25,6 +25,11 @@ public class Task implements Comparable<Task> {
     private Calendar notification;
 
     /**
+     * The status about whether a task has been notified
+     */
+    private boolean isNotified = false;
+
+    /**
      * This defines the priority of this Task based on the enum Priority.
      */
 
@@ -120,11 +125,19 @@ public class Task implements Comparable<Task> {
     }
 
     public void reverseFinish() {
-        this.isFinish = this.isFinish != true;
+        this.isFinish = !this.isFinish;
     }
 
     public boolean getFinish() {
         return this.isFinish;
+    }
+
+    public void reverseNotified() {
+        this.isNotified = !this.isNotified;
+    }
+
+    public boolean getNotified() {
+        return this.isNotified;
     }
 
     @Override
