@@ -20,7 +20,6 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 import edu.illinois.cs.cs125.lib.Task;
-import edu.illinois.cs.cs125.lib.TaskHelper;
 import edu.illinois.cs.cs125.lib.TaskStorage;
 
 public class AddTask extends AppCompatActivity
