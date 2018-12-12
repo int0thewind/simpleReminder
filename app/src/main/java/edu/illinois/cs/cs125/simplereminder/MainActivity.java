@@ -25,8 +25,6 @@ import edu.illinois.cs.cs125.lib.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String GROUP_ID = "Push Notification";
-
     /**
      * Declaring the floating action button in the layout
      */

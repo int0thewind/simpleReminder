@@ -99,7 +99,7 @@ public class AddTask extends AppCompatActivity
                 Log.d(TAG, "jump back to main activity");
 
                 Log.d(TAG, "activity finished");
-                //finish();
+                finish();
             }
         });
     }
@@ -124,7 +124,8 @@ public class AddTask extends AppCompatActivity
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
-        c.set(Calendar.MINUTE,minute);
+        c.set(Calendar.MINUTE, minute);
+        c.set(Calendar.SECOND, 0);
         timePreview.setText(hourOfDay + " : " + minute);
     }
 
