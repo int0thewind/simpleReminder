@@ -5,9 +5,9 @@ import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -23,36 +23,35 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import edu.illinois.cs.cs125.lib.*;
+import edu.illinois.cs.cs125.lib.Task;
+import edu.illinois.cs.cs125.lib.TaskHelper;
 
 public class MainActivity extends AppCompatActivity {
 
     /**
-     * Declaring the floating action button in the layout
+     * ArrayList restore key.
      */
-    private FloatingActionButton fab;
-
+    private static final String RESTORE_KEY = "TaskStorage";
     /**
-     * Declaring the list view in the layout
+     * General Channel ID for notification.
      */
-    private ListView taskList;
-
+    private static final String CHANNEL_ID = "Push due task";
     /**
-     * ArrayList restore key
+     * General debug tag for this activity
      */
-    private final static String RESTORE_KEY = "TaskStorage";
-
+    private static final String TAG = "MainActivity";
     /**
-     * General Channel ID for notification
-     */
-    private final static String CHANNEL_ID = "Push due task";
-
-    /**
-     * The general array adapter
+     * The general array adapter.
      */
     private static ListAdapter taskArrayAdapter;
-
-    private static final String TAG = "MainActivity";
+    /**
+     * Declaring the floating action button in the layout.
+     */
+    private FloatingActionButton fab;
+    /**
+     * Declaring the list view in the layout.
+     */
+    private ListView taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +59,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
 
         Window window = this.getWindow();
-
-// clear FLAG_TRANSLUCENT_STATUS flag:
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
-// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
-// finally change the color
-        window.setStatusBarColor(this.getResources().getColor(R.color.primary_dark));
+        window.clearFlags(WindowManager.
+                LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.
+                LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(this.getResources().
+                getColor(R.color.primary_dark));
 
         restoreTaskStorage();
         Log.d(TAG, "List restored");

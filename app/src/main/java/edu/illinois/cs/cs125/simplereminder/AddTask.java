@@ -82,7 +82,8 @@ public class AddTask extends AppCompatActivity
                 Log.d(TAG, "add task pressed");
 
                 String taskTitle;
-                if (titleInput.getText() == null || titleInput.getText().toString().trim().length() == 0) {
+                if (titleInput.getText() == null
+                        || titleInput.getText().toString().trim().length() == 0) {
                     taskTitle = "New Task";
                     Log.d(TAG, "Invalid title put in");
                 } else {
@@ -100,7 +101,8 @@ public class AddTask extends AppCompatActivity
 
                 createAlarm(c);
 
-                Intent jumpBackToMainActivity = new Intent(AddTask.this, MainActivity.class);
+                Intent jumpBackToMainActivity = new Intent
+                        (AddTask.this, MainActivity.class);
                 jumpBackToMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivityIfNeeded(jumpBackToMainActivity, 0);
                 Log.d(TAG, "jump back to main activity");
